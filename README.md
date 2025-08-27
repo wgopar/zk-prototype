@@ -1,11 +1,28 @@
 # ZK-PROTOTYPE
 
-Basic repository for creating/compiling circuits for Zero Knowledge Proofs (Groth16 zk-SNARK protocol) and generating Verifiers on Solidity. Goal is to prove that we can provide two integers $a,b$ such that:
+This repository was created to help learn how to implement circuits for Zero Knowledge Proofs (Groth16 zk-SNARK protocol) and generating Verifiers on Solidity. The Solidity Verifier is deployed via Hardhat and a Hardhat test file was created (`test/Verifier.test.ts`) that implements the deployment and test of such Verifier. 
+
+Goal of the test is to prove that we can provide two integers $a,b$ such that:
 
 $$
 a + b = N
 $$
 
+At a high level, the test takes care of the following.
+```
+* Define Inputs
+* Generate Witness
+    - import witness_calculator.js that was generated when compiling our circuit. 
+    - calculate witness in binary format
+* Generate Proof
+    - use `.zkey` generated using Powers of Tau and Phase 2 ceremonies to ensure trusted set up for Groth16.
+* Using the `witness` and `.zkey` generate Proof and Public signals used to call the solidity verifier. 
+```
+
+
+*Below are the finer details and steps that were used to set up the circuit and create the Solidity verifier using Circom. This assumes you have installed Circom, Hardat, Node dependencies*
+
+*The original outputs of all below steps are included in project as is.*
 
 Circuit Compilation
 ---
@@ -139,4 +156,17 @@ npx hardhat node
 Use Hardhat Ignition system to deploy the smart contract on the localhost.
 ```
 npx hardhat ignition deploy ignition/modules/VerifierModule.ts --network localhost
+```
+
+Test Smart Contract Verifier with Hardhat
+---
+
+Run Tests in root of project with following command:
+
+`npx hardhat test` 
+
+```
+verifier result:  true
+  Groth16 Verifier
+    ✔ should verify a valid proof (1044ms)
 ```

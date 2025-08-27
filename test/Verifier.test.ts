@@ -1,6 +1,7 @@
 import VerifierModule from "../ignition/modules/VerifierModule.js";
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
+import { expect } from "chai";
 import { network } from "hardhat";
 import * as snarkjs from "snarkjs";
 import { readFile } from 'fs/promises';
@@ -10,7 +11,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-describe("Verifier with Ignition", async function () {
+describe("Groth16 Verifier", async function () {
     it("should verify a valid proof", async function () {
         const { ignition } = await network.connect();
         const { verifier } = await ignition.deploy(VerifierModule);        
@@ -45,6 +46,6 @@ describe("Verifier with Ignition", async function () {
         // Verify Proof
         const result = await verifier.read.verifyProof(argv);
         console.log("verifier result: ", result);
-        assert.equal(result, true);
+        expect(assert.equal(result, true));
     });
 });
