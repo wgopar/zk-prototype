@@ -170,3 +170,9 @@ verifier result:  true
   Groth16 Verifier
     ✔ should verify a valid proof (1044ms)
 ```
+
+Deploy Contract to Sepolia Network
+---
+Verifier Contract was deployed and verfied and can be viewed below
+
+https://sepolia.etherscan.io/address/0xEEAa66d09bE70e9d1F44f31440C9ac1CF1E80B23#code 
