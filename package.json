@@ -30,6 +30,7 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-ignition": "^3.0.0",
     "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^3.0.0",
     "@types/chai": "^5.2.2",
     "@types/node": "^22.17.2",
     "@types/snarkjs": "^0.7.9",
@@ -41,5 +42,8 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.8.0",
     "viem": "^2.35.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1"
   }
 }
